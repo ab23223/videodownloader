@@ -1,39 +1,25 @@
-from flask import Flask, render_template, request, redirect, url_for
-import cloudinary
-import cloudinary.uploader
+from flask import Flask, render_template, request, jsonify
 import os
 from datetime import datetime
 
 app = Flask(__name__)
+
 UPLOAD_FOLDER = os.path.join(os.getcwd(), 'static', 'albums')
 TEMPLATE_FILE = os.path.join(os.getcwd(), 'album_template.html')
-
-# 🔒 Replace these with your real Cloudinary credentials
-cloudinary.config(
-    cloud_name='dfqreujbo',
-    api_key='467879367759351',
-    api_secret='tgJspwPABIOzKQrG3YSeb7YAx2g'
-)
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/upload', methods=['POST'])
-def upload():
-    album_name = request.form['album_name']
-    album_desc = request.form['album_desc']
+@app.route('/generate', methods=['POST'])
+def generate_album():
+    data = request.json
+    album_name = data['album_name']
+    album_desc = data['album_desc']
+    urls = data['image_urls']
     album_date = datetime.now().strftime('%Y-%m-%d')
-    files = request.files.getlist('images')
-    
-    urls = []
-    folder = f"intence/{album_name.replace(' ', '_')}_{album_date}"
-    
-    for file in files:
-        result = cloudinary.uploader.upload(file, folder=folder)
-        urls.append(result['secure_url'])
 
-    # Generate HTML
+    # Build album HTML
     with open(TEMPLATE_FILE, 'r') as f:
         template = f.read()
 
@@ -49,7 +35,7 @@ def upload():
     with open(filepath, 'w') as f:
         f.write(filled)
 
-    return redirect(url_for('index'))
+    return jsonify({'success': True, 'message': 'Album created', 'filename': filename})
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upload New Album</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js"></script>
+</head>
+<body>
+  <h1>Upload Album</h1>
+  <form id="upload-form">
+    <label>Album Name:</label><br>
+    <input type="text" id="album_name" required><br><br>
+
+    <label>Album Description:</label><br>
+    <textarea id="album_desc" required></textarea><br><br>
+
+    <label>Select Images:</label><br>
+    <input id="imageInput" name="images" type="file" multiple accept="image/*" /><br><br>
+
+    <button type="submit">Upload & Generate</button>
+  </form>
+
+  <div id="status"></div>
+
+  <script>
+    const CLOUD_NAME = 'dfqreujbo';
+    const UPLOAD_PRESET = 'intencemedia_unsigned';
+
+    async function uploadImageToCloudinary(file) {
+      const url = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/upload`;
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', UPLOAD_PRESET);
+
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`Upload failed with status ${response.status}: ${errorText}`);
+        }
+
+        const data = await response.json();
+        return data.secure_url;
+      } catch (err) {
+        console.error('Upload error:', err);
+        return null;
+      }
+    }
+
+    async function uploadAllImages(files) {
+      const uploadedUrls = [];
+      for (const file of files) {
+        document.getElementById('status').textContent = `Uploading ${file.name}...`;
+        const url = await uploadImageToCloudinary(file);
+        if (url) {
+          uploadedUrls.push(url);
+          console.log(`Uploaded ${file.name} successfully!`);
+        } else {
+          console.error(`Failed to upload ${file.name}`);
+        }
+      }
+      return uploadedUrls;
+    }
+
+    document.getElementById('upload-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const albumName = document.getElementById('album_name').value.trim();
+      const albumDesc = document.getElementById('album_desc').value.trim();
+      const files = document.getElementById('imageInput').files;
+
+      if (!albumName) {
+        alert('Please enter an album name.');
+        return;
+      }
+      if (!albumDesc) {
+        alert('Please enter an album description.');
+        return;
+      }
+      if (files.length === 0) {
+        alert('Please select images to upload.');
+        return;
+      }
+
+      document.getElementById('status').textContent = 'Starting uploads...';
+
+      // Upload images to Cloudinary
+      const uploadedUrls = await uploadAllImages(files);
+
+      if (uploadedUrls.length === 0) {
+        alert('No images were uploaded successfully. Aborting album creation.');
+        document.getElementById('status').textContent = 'Upload failed.';
+        return;
+      }
+
+      document.getElementById('status').textContent = 'Uploading complete! Generating album...';
+
+      // Send album data and image URLs to Flask backend
+      try {
+        const res = await axios.post('/generate', {
+          album_name: albumName,
+          album_desc: albumDesc,
+          image_urls: uploadedUrls
+        });
+
+        if (res.data.success) {
+          document.getElementById('status').innerHTML = `
+            Album created successfully!<br>
+            <a href="/static/albums/${res.data.filename}" target="_blank">View Album</a>
+          `;
+        } else {
+          document.getElementById('status').textContent = 'Failed to create album on server.';
+        }
+      } catch (err) {
+        console.error(err);
+        document.getElementById('status').textContent = 'Error generating album on server.';
+      }
+    });
+  </script>
+</body>
+</html>
