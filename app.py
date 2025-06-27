@@ -1,36 +1,55 @@
-from flask import Flask, render_template, request, send_file
-import yt_dlp
+from flask import Flask, render_template, request, redirect, url_for
+import cloudinary
+import cloudinary.uploader
 import os
-from uuid import uuid4
+from datetime import datetime
 
 app = Flask(__name__)
+UPLOAD_FOLDER = os.path.join(os.getcwd(), 'static', 'albums')
+TEMPLATE_FILE = os.path.join(os.getcwd(), 'album_template.html')
 
-DOWNLOAD_FOLDER = "downloads"
-os.makedirs(DOWNLOAD_FOLDER, exist_ok=True)
+# 🔒 Replace these with your real Cloudinary credentials
+cloudinary.config(
+    cloud_name='dfqreujbo',
+    api_key='467879367759351',
+    api_secret='tgJspwPABIOzKQrG3YSeb7YAx2g'
+)
 
-@app.route("/", methods=["GET", "POST"])
+@app.route('/')
 def index():
-    if request.method == "POST":
-        url = request.form["url"]
-        video_id = str(uuid4())
-        output_path = os.path.join(DOWNLOAD_FOLDER, f"{video_id}.mp4")
+    return render_template('index.html')
 
-        ydl_opts = {
-            'format': 'bestvideo+bestaudio/best',
-            'outtmpl': output_path,
-            'merge_output_format': 'mp4',
-            'cookiefile': 'cookies.txt'  # 👈 Add this line
-        }
+@app.route('/upload', methods=['POST'])
+def upload():
+    album_name = request.form['album_name']
+    album_desc = request.form['album_desc']
+    album_date = datetime.now().strftime('%Y-%m-%d')
+    files = request.files.getlist('images')
+    
+    urls = []
+    folder = f"intence/{album_name.replace(' ', '_')}_{album_date}"
+    
+    for file in files:
+        result = cloudinary.uploader.upload(file, folder=folder)
+        urls.append(result['secure_url'])
 
+    # Generate HTML
+    with open(TEMPLATE_FILE, 'r') as f:
+        template = f.read()
 
-        try:
-            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-                ydl.download([url])
-            return send_file(output_path, as_attachment=True)
-        except Exception as e:
-            return f"Error: {e}"
+    image_js = ",\n".join(f'"{url}"' for url in urls)
+    filled = template.replace('{{title}}', album_name)
+    filled = filled.replace('{{desc}}', album_desc)
+    filled = filled.replace('{{images}}', image_js)
 
-    return render_template("index.html")
+    filename = f"{album_name.replace(' ', '_')}_{album_date}.html"
+    filepath = os.path.join(UPLOAD_FOLDER, filename)
 
-if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0")
+    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+    with open(filepath, 'w') as f:
+        f.write(filled)
+
+    return redirect(url_for('index'))
+
+if __name__ == '__main__':
+    app.run(debug=True)

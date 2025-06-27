@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Intence Media Admin</title>
+</head>
+<body>
+    <h1>Upload a New Album</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label>Album Name:</label><br>
+        <input type="text" name="album_name" required><br><br>
+        
+        <label>Album Description:</label><br>
+        <textarea name="album_desc" required></textarea><br><br>
+        
+        <label>Select Images:</label><br>
+        <input type="file" name="images" multiple required><br><br>
+        
+        <button type="submit">Upload Album</button>
+    </form>
+</body>
+</html>
