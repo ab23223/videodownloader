@@ -1,23 +1,142 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Upload New Album</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js"></script>
+    <title>Upload New Album</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js"></script>
+    <style>
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Bebas Kai', sans-serif;
+            background: #191919;
+            color: #fff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        h1{
+            text-align: center;
+        }
+        @font-face {
+            font-family: 'Bebas Kai';
+            src: url('static/fonts/BebasKai.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* Container to center the form */
+        .contact-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        /* Form section */
+        .contact-form-section {
+            background: #222;
+            padding: 40px 50px;
+            border-radius: 8px;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .contact-form-section h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Form styling */
+        .contact-form label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            display: block;
+            color: #fff;
+            font-size: 1.5rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form input[type="file"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 18px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            background-color: #fff;
+            color: #000;
+            border: none;
+            outline: none;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus,
+        .contact-form input[type="file"]:focus {
+            border-color: transparent;
+            outline: 2px solid #fff;
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+        }
+
+        .contact-form button {
+            width: 100%;
+            background: #fff;
+            color: #000;
+            font-weight: 700;
+            border: none;
+            padding: 15px 0;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background: #333;
+            color: #fff;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .contact-form-section {
+            padding: 30px 25px;
+            }
+        }
+        </style>
+
 </head>
 <body>
   <h1>Upload Album</h1>
-  <form id="upload-form">
-    <label>Album Name:</label><br>
-    <input type="text" id="album_name" required><br><br>
+  <div class="contact-container">
+    <section class="contact-form-section">
+      <h1>Intence Media Upload</h1>
+      <form id="upload-form" class="contact-form" enctype="multipart/form-data">
+        <label for="album_name">Album Name:</label>
+        <input type="text" id="album_name" name="album_name" required />
 
-    <label>Album Description:</label><br>
-    <textarea id="album_desc" required></textarea><br><br>
+        <label for="album_desc">Album Description:</label>
+        <textarea id="album_desc" name="album_desc" required></textarea>
 
-    <label>Select Images:</label><br>
-    <input id="imageInput" name="images" type="file" multiple accept="image/*" /><br><br>
+        <label for="imageInput">Select Images:</label>
+        <input id="imageInput" name="images" type="file" multiple accept="image/*" />
 
-    <button type="submit">Upload & Generate</button>
-  </form>
+        <button type="submit">Upload & Generate</button>
+      </form>
+    </section>
+  </div>
 
   <div id="status"></div>
 

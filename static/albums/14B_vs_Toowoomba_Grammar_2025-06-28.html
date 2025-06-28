@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>14B vs Toowoomba Grammar</title>
+</head>
+<body>
+  <header class="navbar custom-nav">
+    <div class="nav-left">
+      <a href="/IntenceMedia/">Work</a>
+      <a href="contact">Contact</a>
+      <a href="about">About</a>
+    </div>
+    <div class="nav-center">
+      <a href="/IntenceMedia/">INTENCE MEDIA</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://instagram.com/intence.media" target="_blank">
+        <img src="https://www.citypng.com/public/uploads/preview/hd-square-white-instagram-logo-icon-png-701751695118869dhkjddwaed.png" alt="Instagram" style="width: 24px; height: 24px;">
+      </a>
+    </div>
+  </header>
+
+  <section>
+    <h1>14B vs Toowoomba Grammar</h1>
+    <p>Photos from the 14B vs Toowoomba Grammar game</p>
+  </section>
+
+  <h2>Gallery</h2>
+  <div id="gallery"></div>
+
+  <script>
+    const images = [
+      "https://res.cloudinary.com/dfqreujbo/image/upload/v1751069425/iane8avbmhqzhpaq6hr7.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069428/zkwx8s8dxwlbzugb33oc.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069432/gfy5s3gv386mgjvqurpd.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069435/sgrnu2dap3dkhyms69gc.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069438/cpjepqincf0bg3nynloc.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069443/lpwlhv99chij3p8kz2vh.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069446/pnmyno9fu6yvvnu7rhhg.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069449/qno2qykqtpcgipcsdwil.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069452/dhlu8emvijymymxba5cx.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069456/pzoabdmlfa5bchrkuoko.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069460/zlpbw1ipernuarka4r0u.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069464/moo157jnuxrki0avi8ol.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069468/k19ruvki77xdvtnzg33a.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069473/aghm3gdn3qaqn5cr1ts2.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069478/n9o70pc5gxujwyi3l7nc.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069482/njcugs90gblee2qzk6ul.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069486/dl1k8aghokcavfkzlpoz.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069490/rqiojqkimp2xctxxorrc.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069495/qiq3xphnybyzc9wxnaa2.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069499/ixe66wavwflpdcedtg80.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069503/uzbeurtgusx6biji0d9t.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069506/sqdnoc3b6ibqimbek8ah.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069510/ycav0bjye4szbnpdxfmr.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069514/gbyl1tpmqhgtivga8zlu.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069518/xwvgqkhmydnqagmozaq8.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069521/mlsnudfveuthgl5cdse5.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069523/nxuhlgu8bhu0seyyw7na.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069526/rwxlw5xxx1brlplpqckw.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069528/fkdprkvikosxkcaef6x8.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069531/k4tbfdycy3p9tzwknplo.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069534/d4upmzkgeew90wxcdtru.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069536/yy2889eobjxarvigsoih.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069539/qpo59qotrcmk1yyweykp.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069543/sa39xabq7mqsuzy4kfpu.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069547/dafvf1gnluj6uyc6zoix.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069550/mnfxuy6gqlkce15a7i13.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069554/jrsfvtkhpyemg3grgelh.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069558/sottxqwunzdicads0c6m.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069561/fzauqxggrhfrn08exiy4.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069564/l9ww9kcfv49spbfmr7pk.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069569/vcdrwmndjslbxotwmqsn.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069573/xoopwjjfn9niexcjjmeo.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069577/xhwrqxgjjacfcs9c7tn2.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069580/y3fwvtspneije9aztkex.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069584/b0cv9ggulmfruyoqylp4.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069587/hitx6qmxfee0kcmblurt.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069590/srjbi9typlptnmrzerta.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069593/etchm0e6avwavmr8g2k4.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069597/dageg4wiima3jqjejg9o.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069601/wkxakp5mnfvneeyjnsww.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069604/fajly0cb5o96rtjxwzrx.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069608/gil4q3x9ivc8lyqmgntw.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069611/jxj8b3bs64veihy5hyj6.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069615/arudeud1ccq0ta5sqjr7.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069619/sm9cpedbizwqtpuig59h.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069622/thc3ngeo6htjln0nakuz.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069626/uobbixugvtsobk4j1z2a.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069630/g5dubxovlimn8ncufxpg.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069635/awryz7cww793b0dza7oy.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069639/t2byyza6mgilg8gni128.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069643/c7ez9k3c0apunmalmooc.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069647/gfacptvcgkgyzz0lhfp8.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069652/flhpmtextczarj0vgosr.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069659/d0ueujzw8e7uezgmedja.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069664/icyedghuu0ppy2jvz9ee.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069668/gppjnyxwgm3sd3rllmsc.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069670/yxsk1qmeq1vdx1vmzhlk.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069675/e58lti97d1g79eor1whn.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069679/wlpka4fjlnwrmrn6tyuo.jpg",
+"https://res.cloudinary.com/dfqreujbo/image/upload/v1751069684/dg1acd9hqr32nxfd0nl3.jpg"
+    ];
+
+    const gallery = document.getElementById('gallery');
+    images.forEach(url => {
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('data-lightbox', 'gallery');
+
+      const img = document.createElement('img');
+      const transformedUrl = url.replace('/upload/', '/upload/w_428,h_224,c_fill,f_auto,q_auto/');
+      img.src = transformedUrl;
+      img.alt = 'Gallery Image';
+      img.width = 428;
+      img.height = 224;
+      img.loading = 'lazy';
+      img.style.margin = '10px';
+      img.style.objectFit = 'cover';
+
+      link.appendChild(img);
+      gallery.appendChild(link);
+    });
+  </script>
+
+  <footer>
+    <p>&copy; 2025 Intence Media. All rights reserved.</p>
+  </footer>
+</body>
+</html>
