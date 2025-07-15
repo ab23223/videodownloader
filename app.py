@@ -1,11 +1,47 @@
-from flask import Flask, render_template, request, jsonify
-import os
+from flask import Flask, render_template, request, jsonify, redirect, url_for, session, Response
+import os, json
 from datetime import datetime
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
+app.secret_key = 'hi'  # You can change this to something secure
+USERNAME = 'admin'
+PASSWORD = 'intencemedia2025'
 
-UPLOAD_FOLDER = os.path.join(os.getcwd(), 'static', 'albums')
-TEMPLATE_FILE = os.path.join(os.getcwd(), 'album_template.html')
+ALBUMS_FILE = 'albums.json'
+ALBUM_FOLDER = os.path.join('static', 'albums')
+TEMPLATE_FILE = os.path.join('templates', 'album_template.html')
+
+# -------------------------
+# Login System
+# -------------------------
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        
+        if username == USERNAME and password == PASSWORD:
+            session['logged_in'] = True
+            return redirect(url_for('index'))
+        else:
+            error = 'Invalid credentials'
+    
+    return render_template('login.html', error=error)
+
+@app.route('/logout')
+def logout():
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
+
+# -------------------------
+# Admin Console (Protected)
+# -------------------------
+@app.route('/admin')
+def admin():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+    return render_template('admin.html')
 
 @app.route('/')
 def index():
@@ -29,7 +65,7 @@ def generate_album():
     filled = filled.replace('{{images}}', image_js)
 
     filename = f"{album_name.replace(' ', '_')}_{album_date}.html"
-    filepath = os.path.join(UPLOAD_FOLDER, filename)
+    filepath = os.path.join(ALBUM_FOLDER, filename)
 
     os.makedirs(UPLOAD_FOLDER, exist_ok=True)
     with open(filepath, 'w') as f:
