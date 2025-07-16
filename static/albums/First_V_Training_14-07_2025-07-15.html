@@ -382,12 +382,12 @@
 <body>
   <header class="navbar custom-nav">
     <div class="nav-left">
-      <a href="/IntenceMedia/">Work</a>
-      <a href="contact">Contact</a>
-      <a href="about">About</a>
+      <a href="/">Work</a>
+      <a href="/contact">Contact</a>
+      <a href="/about">About</a>
     </div>
     <div class="nav-center">
-      <a href="/IntenceMedia/">INTENCE MEDIA</a>
+      <a href="/">INTENCE MEDIA</a>
     </div>
     <div class="nav-right">
       <a href="https://instagram.com/intence.media" target="_blank">
@@ -398,7 +398,7 @@
 
   <section>
     <h1>First V Training 14-07</h1>
-    <p>Ash</p>
+    <p>Shots from the First V's first training of the term</p>
   </section>
 
   <h2>Gallery</h2>
@@ -425,7 +425,7 @@
 
       const img = document.createElement('img');
       const transformedUrl = url.replace('/upload/', '/upload/f_auto,q_auto/');
-      img.src = transformedUrl;
+      img.src = url.replace('/upload/', '/upload/f_auto,q_auto/');
       img.alt = 'Gallery Image';
       img.width = 428;
       img.height = 224;
@@ -442,10 +442,39 @@
       let imagesList = Array.from(links).map(link => link.href);
       let currentIndex = 0;
 
-      const lightboxContainer = document.getElementById('lightbox');
-      const lightboxImage = lightboxContainer.querySelector('img');
-      const prevBtn = document.getElementById('lightbox-prev');
-      const nextBtn = document.getElementById('lightbox-next');
+      const lightboxContainer = document.createElement('div');
+      const lightboxImage = document.createElement('img');
+      const prevBtn = document.createElement('button');
+      const nextBtn = document.createElement('button');
+
+      lightboxContainer.id = 'lightbox';
+      prevBtn.id = 'lightbox-prev';
+      nextBtn.id = 'lightbox-next';
+
+      prevBtn.textContent = '‹';
+      nextBtn.textContent = '›';
+
+      [prevBtn, nextBtn].forEach(btn => {
+        btn.style.position = 'absolute';
+        btn.style.top = '50%';
+        btn.style.transform = 'translateY(-50%)';
+        btn.style.fontSize = '3rem';
+        btn.style.color = '#fff';
+        btn.style.background = 'rgba(0,0,0,0.3)';
+        btn.style.border = 'none';
+        btn.style.padding = '0 15px';
+        btn.style.cursor = 'pointer';
+        btn.style.userSelect = 'none';
+        btn.style.zIndex = '10001';
+      });
+
+      prevBtn.style.left = '20px';
+      nextBtn.style.right = '20px';
+
+      lightboxContainer.appendChild(lightboxImage);
+      lightboxContainer.appendChild(prevBtn);
+      lightboxContainer.appendChild(nextBtn);
+      document.body.appendChild(lightboxContainer);
 
       function openLightbox(index) {
         currentIndex = index;
@@ -459,12 +488,12 @@
 
       function showPrev() {
         currentIndex = (currentIndex - 1 + imagesList.length) % imagesList.length;
-        lightboxImage.src = imagesList[currentIndex];
+        lightboxImage.src = imagesList[currentIndex].replace('/upload/', '/upload/w_1600,q_auto,f_auto/');
       }
 
       function showNext() {
         currentIndex = (currentIndex + 1) % imagesList.length;
-        lightboxImage.src = imagesList[currentIndex];
+        lightboxImage.src = imagesList[currentIndex].replace('/upload/', '/upload/w_1600,q_auto,f_auto/');
       }
 
       links.forEach((link, index) => {
@@ -497,7 +526,6 @@
         else if (e.key === 'Escape') closeLightbox();
       });
 
-      let touchStartX = 0, touchEndX = 0;
       lightboxContainer.addEventListener('touchstart', e => {
         touchStartX = e.changedTouches[0].screenX;
       });
