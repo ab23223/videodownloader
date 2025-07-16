@@ -47,6 +47,8 @@ def admin():
 def index():
     return render_template('index.html')
 
+import json
+
 @app.route('/generate', methods=['POST'])
 def generate_album():
     data = request.json
@@ -55,23 +57,28 @@ def generate_album():
     urls = data['image_urls']
     album_date = datetime.now().strftime('%Y-%m-%d')
 
-    # Build album HTML
     with open(TEMPLATE_FILE, 'r') as f:
         template = f.read()
 
-    image_js = ",\n".join(f'"{url}"' for url in urls)
+    # Safely encode URLs as JSON array string for JS injection
+    image_js = json.dumps(urls)
+
     filled = template.replace('{{title}}', album_name)
     filled = filled.replace('{{desc}}', album_desc)
-    filled = filled.replace('{{images}}', image_js)
+    filled = template.replace('{{images}}', image_js)
 
     filename = f"{album_name.replace(' ', '_')}_{album_date}.html"
     filepath = os.path.join(ALBUM_FOLDER, filename)
 
-    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+    os.makedirs(ALBUM_FOLDER, exist_ok=True)
     with open(filepath, 'w') as f:
         f.write(filled)
 
-    return jsonify({'success': True, 'message': 'Album created', 'filename': filename})
+    # You can also return a URL to preview the album
+    preview_url = f"/static/albums/{filename}"
+
+    return jsonify({'success': True, 'message': 'Album created', 'filename': filename, 'preview_url': preview_url})
+
 
 if __name__ == '__main__':
     app.run(debug=True)

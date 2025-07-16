@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>{{title}}</title>
+  <link rel="stylesheet" href="/static/assets/lightbox.css" />
+  <title>First V Training 14-07</title>
   <style>
     /* Reset & Base */
     * {
@@ -129,12 +130,11 @@
     .custom-nav {
       position: relative;
       display: flex;
-      justify-content: flex-start; /* left align left nav */
+      justify-content: flex-start;
       align-items: center;
       padding: 3rem 4rem;
     }
 
-    /* Left nav stays flex */
     .nav-left {
       display: flex;
       align-items: center;
@@ -150,14 +150,13 @@
       user-select: none;
     }
     .nav-center a {
-      pointer-events: auto; /* make link clickable */
+      pointer-events: auto;
       text-decoration: none;
       color: white;
     }
 
-    /* Right nav positioned right */
     .nav-right {
-      margin-left: auto; /* push it all the way right */
+      margin-left: auto;
       display: flex;
       align-items: center;
       gap: 20px;
@@ -233,7 +232,6 @@
       background: transparent;
     }
 
-    /* Left image takes half */
     .contact-image {
       flex: 1;
       overflow: hidden;
@@ -246,7 +244,6 @@
       border-radius: 10px;
     }
 
-    /* Right form section */
     .contact-form-section {
       flex: 1;
       padding: 40px 50px;
@@ -266,7 +263,6 @@
       margin-bottom: 20px;
     }
 
-    /* Form styles */
     .contact-form label {
       font-weight: 600;
       margin-bottom: 6px;
@@ -310,7 +306,6 @@
       background: #333;
     }
 
-    /* Contact info under form */
     .contact-info {
       margin-top: 30px;
       font-size: 1rem;
@@ -328,7 +323,6 @@
       text-decoration: underline;
     }
 
-    /* Responsive adjustments */
     @media (max-width: 900px) {
       .contact-container {
         flex-direction: column;
@@ -342,7 +336,7 @@
       }
     }
 
-        #gallery {
+    #gallery {
       column-count: 3;
       column-gap: 20px;
       max-width: 1200px;
@@ -353,6 +347,7 @@
     #gallery img {
       width: 100%;
       height: auto;
+      display: block;
       margin-bottom: 20px;
       break-inside: avoid;
       transition: transform 0.3s ease;
@@ -374,132 +369,14 @@
       }
     }
 
-
     h2 {
       text-align: center;
       font-size: 3rem;
     }
 
-    /* Lightbox base container */
-    #lightbox {
-      display: none;                 /* hidden by default */
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;                  /* prevent horizontal scrolling */
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.85);
-      justify-content: center;
-      align-items: center;
-      z-index: 10000;
-      overflow: hidden;
-    }
+    /* Lightbox code and other stuff... */
+    /* (you can continue your other custom sections here) */
 
-    /* Make visible when active */
-    #lightbox.active {
-      display: flex;
-    }
-
-    /* Lightbox image styling */
-    #lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      object-fit: contain;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-      z-index: 10002;
-    }
-
-    /* Lightbox arrows (hidden by default) */
-    #lightbox-prev,
-    #lightbox-next {
-      display: none;
-    }
-
-    /* Show arrows only when active */
-    #lightbox.active #lightbox-prev,
-    #lightbox.active #lightbox-next {
-      display: block;
-    }
-
-    /* Arrow buttons styling */
-    #lightbox-prev,
-    #lightbox-next {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 3rem;
-      color: #fff;
-      background: rgba(0, 0, 0, 0.3);
-      border: none;
-      padding: 0 15px;
-      cursor: pointer;
-      user-select: none;
-      z-index: 10003;
-    }
-
-    #lightbox-prev {
-      left: 20px;
-    }
-
-    #lightbox-next {
-      right: 20px;
-    }
-
-    @media (max-width: 768px) {
-      .custom-nav {
-        flex-direction: column;
-        align-items: center;
-        padding: 1rem 2rem;
-      }
-
-      .nav-center {
-        position: static;
-        transform: none;
-        font-size: 2rem;
-        margin-bottom: 15px;
-        text-align: center;
-      }
-
-      .nav-left {
-        order: 2; /* Move nav links after the center heading */
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 15px;
-        width: 100%;
-        margin-bottom: 10px;
-      }
-
-      .nav-right {
-        order: 3; /* Instagram last */
-        justify-content: center;
-        margin-bottom: 10px;
-      }
-
-      .nav-right a img {
-        width: 28px;
-        height: 28px;
-      }
-    }
-    /* Gallery image sizing and optimization */
-    #gallery img {
-      width: 428px;
-      height: 224px;
-      object-fit: cover;
-      display: block;
-      margin-bottom: 20px;
-      break-inside: avoid;
-      transition: transform 0.3s ease;
-      border-radius: 6px;
-    }
-
-    /* Responsive resizing on mobile */
-    @media (max-width: 600px) {
-      #gallery img {
-        width: 350px;
-        height: 183px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -520,26 +397,34 @@
   </header>
 
   <section>
-    <h1>{{title}}</h1>
-    <p>{{desc}}</p>
+    <h1>First V Training 14-07</h1>
+    <p>Ash</p>
   </section>
 
   <h2>Gallery</h2>
   <div id="gallery"></div>
 
+  <!-- Lightbox Elements -->
+  <div id="lightbox">
+    <img src="" alt="Expanded image">
+    <button id="lightbox-prev">‹</button>
+    <button id="lightbox-next">›</button>
+  </div>
+
   <script>
     const images = [
-      {{images}}
+      "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622266/ynnd1st6rfef2crr3dcz.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622267/zdvbkrvwdk7fv1skyxjv.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622269/qs2haiiba1f9mh2lwcfi.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622270/j6lnw97hu66igomp1u6u.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622271/nac14fcrqdsyeax7eqph.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622273/cd5emux2ocjvmctukiux.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622275/y8kjzn7lnpojhv1v8f4e.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622278/eldhuy78rgaprfinnwve.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622281/vux32ixpnmkmdwc5wcyb.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622285/qymregxrb5n9oufbiymh.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622290/yhk4izwvcoq5xlkarbdi.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622296/tjnm5441xeqdobolisag.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622301/lmfalvp3iam5hvmeqpar.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622306/qwhrymivyr0uph2piai4.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622309/er1x4yik58wkh1pm9arz.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622314/oziu6wucxgr0xn8rphsr.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622317/s7mfmrlmiw2sqmmalvlu.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622320/cwmsurfdiksnl095aq2d.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622323/p0c0md5myikinmn1ftxs.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622326/xh5l4hei3qfo4pwnitoh.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622328/tjcjgdwi3nkh7mbumbma.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622331/ud4gbdek3fvwnccusdox.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622333/d8e5ushmoi09ggvqn0dg.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622335/rerctaqohtdubmw8zmdi.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622337/huhubgmnbqg0rdnj0bvq.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622339/dm9sspt5fdabwgj7vs8m.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622341/n2kvu9nzuqt06yyozssa.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622343/czujla6llpb9rhx6cspk.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622345/mo7sggg3ledudqeqa8yi.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622347/qvsxpkazc40uvgipxceb.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622349/r0i4iq0378imybzsavcv.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622352/svumwlnjfr0jftwflnwh.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622355/gvdkzlu1im4dr5l5gijw.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1752622357/uriofg1ublxp11qpr48t.jpg"
     ];
 
     const gallery = document.getElementById('gallery');
+
     images.forEach(url => {
       const link = document.createElement('a');
       link.href = url;
       link.setAttribute('data-lightbox', 'gallery');
 
       const img = document.createElement('img');
-      const transformedUrl = url.replace('/upload/', '/upload/w_428,h_224,c_fill,f_auto,q_auto/');
+      const transformedUrl = url.replace('/upload/', '/upload/f_auto,q_auto/');
       img.src = transformedUrl;
       img.alt = 'Gallery Image';
       img.width = 428;
@@ -551,6 +436,83 @@
       link.appendChild(img);
       gallery.appendChild(link);
     });
+
+    function setupLightbox() {
+      const links = gallery.querySelectorAll('a[data-lightbox]');
+      let imagesList = Array.from(links).map(link => link.href);
+      let currentIndex = 0;
+
+      const lightboxContainer = document.getElementById('lightbox');
+      const lightboxImage = lightboxContainer.querySelector('img');
+      const prevBtn = document.getElementById('lightbox-prev');
+      const nextBtn = document.getElementById('lightbox-next');
+
+      function openLightbox(index) {
+        currentIndex = index;
+        lightboxImage.src = imagesList[currentIndex].replace('/upload/', '/upload/w_1600,q_auto,f_auto/');
+        lightboxContainer.classList.add('active');
+      }
+
+      function closeLightbox() {
+        lightboxContainer.classList.remove('active');
+      }
+
+      function showPrev() {
+        currentIndex = (currentIndex - 1 + imagesList.length) % imagesList.length;
+        lightboxImage.src = imagesList[currentIndex];
+      }
+
+      function showNext() {
+        currentIndex = (currentIndex + 1) % imagesList.length;
+        lightboxImage.src = imagesList[currentIndex];
+      }
+
+      links.forEach((link, index) => {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          openLightbox(index);
+        });
+      });
+
+      lightboxContainer.addEventListener('click', e => {
+        if (e.target === lightboxContainer) {
+          closeLightbox();
+        }
+      });
+
+      prevBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        showPrev();
+      });
+
+      nextBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        showNext();
+      });
+
+      document.addEventListener('keydown', e => {
+        if (!lightboxContainer.classList.contains('active')) return;
+        if (e.key === 'ArrowLeft') showPrev();
+        else if (e.key === 'ArrowRight') showNext();
+        else if (e.key === 'Escape') closeLightbox();
+      });
+
+      let touchStartX = 0, touchEndX = 0;
+      lightboxContainer.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+      });
+
+      lightboxContainer.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        const swipeDistance = touchEndX - touchStartX;
+        if (Math.abs(swipeDistance) > 50) {
+          if (swipeDistance > 0) showPrev();
+          else showNext();
+        }
+      });
+    }
+
+    setupLightbox();
   </script>
 
   <footer>

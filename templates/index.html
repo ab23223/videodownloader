@@ -173,7 +173,7 @@
         }
       } catch (err) {
         document.getElementById('status').textContent = 'Error generating album on server.';
-        console.error(err);
+        console.error("Full error:", err.response ? err.response.data : err.message);
       }
     });
   </script>
