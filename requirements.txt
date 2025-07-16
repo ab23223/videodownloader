@@ -1,4 +1,2 @@
 Flask
-cloudinary
-python-dotenv
 gunicorn
