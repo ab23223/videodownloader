@@ -60,12 +60,12 @@ def generate_album():
     with open(TEMPLATE_FILE, 'r') as f:
         template = f.read()
 
-    # Safely encode URLs as JSON array string for JS injection
     image_js = json.dumps(urls)
 
+    # Replace placeholders correctly
     filled = template.replace('{{title}}', album_name)
     filled = filled.replace('{{desc}}', album_desc)
-    filled = template.replace('{{images}}', image_js)
+    filled = filled.replace('{{images}}', image_js)
 
     filename = f"{album_name.replace(' ', '_')}_{album_date}.html"
     filepath = os.path.join(ALBUM_FOLDER, filename)
@@ -74,10 +74,16 @@ def generate_album():
     with open(filepath, 'w') as f:
         f.write(filled)
 
-    # You can also return a URL to preview the album
     preview_url = f"/static/albums/{filename}"
 
-    return jsonify({'success': True, 'message': 'Album created', 'filename': filename, 'preview_url': preview_url})
+    # Return the preview URL AND the full HTML code
+    return jsonify({
+        'success': True,
+        'message': 'Album created',
+        'filename': filename,
+        'preview_url': preview_url,
+        'html_code': filled  # send the entire HTML code string
+    })
 
 
 if __name__ == '__main__':

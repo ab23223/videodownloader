@@ -105,6 +105,17 @@
     </form>
     <div class="progress-counter" id="progress-counter"></div>
     <div class="status" id="status"></div>
+    
+    <div id="preview-container" style="margin-top:40px;">
+      <h2>Album Preview</h2>
+      <iframe id="album-preview" style="width:100%; height:600px; border:1px solid #555;"></iframe>
+    </div>
+
+    <div id="code-container" style="margin-top:40px;">
+      <h2>Copy the HTML Code</h2>
+      <textarea id="album-code" style="width:100%; height:300px; background:#222; color:#eee; font-family: monospace; font-size:14px; padding:15px; border-radius:8px;" readonly></textarea>
+    </div>
+
   </div>
 
   <script>
@@ -166,8 +177,17 @@
         if (res.data.success) {
           document.getElementById('status').innerHTML = `
             <strong>Album created successfully!</strong><br>
-            <a href="${res.data.preview_url}" target="_blank">View Album</a>
+            <a href="${res.data.preview_url}" target="_blank">Open Album in New Tab</a>
           `;
+
+          // Set iframe src to preview URL
+          const previewFrame = document.getElementById('album-preview');
+          previewFrame.src = res.data.preview_url;
+
+          // Show full HTML code in textarea
+          const codeArea = document.getElementById('album-code');
+          codeArea.textContent = res.data.html_code;
+
         } else {
           document.getElementById('status').textContent = 'Failed to create album on server.';
         }
@@ -176,6 +196,6 @@
         console.error("Full error:", err.response ? err.response.data : err.message);
       }
     });
-  </script>
+</script>
 </body>
 </html>
