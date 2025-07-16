@@ -14,7 +14,7 @@ TEMPLATE_FILE = os.path.join('templates', 'album_template.html')
 # -------------------------
 # Login System
 # -------------------------
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def login():
     error = None
     if request.method == 'POST':
@@ -43,7 +43,7 @@ def admin():
         return redirect(url_for('login'))
     return render_template('admin.html')
 
-@app.route('/')
+@app.route('/adminconsole')
 def index():
     return render_template('index.html')
 
