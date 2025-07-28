@@ -6,351 +6,452 @@
     <title>{{title}} | Intence Media</title>
     <link rel="stylesheet" href="static/style.css" />
     <link rel="stylesheet" href="/static/assets/lightbox.css" />
-    <meta name="description" content="Photos of Sacred Hearts 1st V vs Dilworth, Intence Media — freelance photography based in Auckland, New Zealand.">
+    <meta name="description" content="Photos of {{title}}, Intence Media — freelance photography based in Auckland, New Zealand.">
     <meta name="keywords" content="Intence Media, sports photography NZ, automotive photography, school sports photos, car photography, New Zealand, Intense Media, Intence Media NZ, Rugby Photography, Photography, freelance, First 15, First XV">
     <meta name="author" content="Intence Media">
-    <link rel="canonical" href="https://ab23223.github.io/IntenceMedia/First-V-vs-Dilworth-23-07"><title>First V vs Dilworth<title>
+    <link rel="canonical" href="https://ab23223.github.io/IntenceMedia/{{title}}">
     <style>
-        img {
-            -webkit-user-drag: none;
-            user-select: none;
-            -webkit-user-select: none;
-            user-drag: none;
-            pointer-events: none;
-        }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    img {
+      -webkit-user-drag: none;
+      user-drag: none;
+      pointer-events: none;
+    }
 
-        @font-face {
-            font-family: 'Bebas Kai';
-            src: url('static/fonts/BebasKai.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Bebas Kai', sans-serif;
+      background: #191919;
+      color: #fff;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      font-family: 'Bebas Kai', sans-serif;
+      letter-spacing: 1px;
+    }
 
-        body {
-            font-family: 'Bebas Kai', sans-serif;
-            background: #191919;
-            color: #fff;
-            line-height: 1.6;
-        }
+    @font-face {
+      font-family: 'Bebas Kai';
+      src: url('static/fonts/BebasKai.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
 
-        h1, h2, h3 {
-            font-family: 'Bebas Kai', sans-serif;
-            letter-spacing: 1px;
-        }
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #191919;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    nav a:hover {
+      color: #777;
+    }
 
-        a {
-            color: #fff;
-            text-decoration: none;
-            transition: 0.3s ease;
-        }
+    /* Gallery Grid */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 40px;
+    }
+    .gallery-item {
+      overflow: hidden;
+      display: block;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
 
-        a:hover {
-            opacity: 0.7;
-        }
+    /* Page Sections */
+    section {
+      padding: 60px 40px;
+      max-width: 900px;
+      margin: auto;
+    }
+    h1{
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    p {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+    a:hover {
+      opacity: 0.7;
+    }
 
-        /* Navbar */
-        .custom-nav {
-            position: relative;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            padding: 3rem 4rem;
-        }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.9rem;
+      color: #fff;
+      border-top: 1px solid #eee;
+    }
 
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
+    /* Responsive */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav a {
+        margin-left: 0;
+        margin-right: 15px;
+        display: inline-block;
+        margin-top: 10px;
+      }
+    }
 
-        .nav-center {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 2.5rem;
-            font-weight: bold;
-            user-select: none;
-        }
+    /* Custom Navbar Layout */
+    .custom-nav {
+      position: relative;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 3rem 4rem;
+    }
 
-        .nav-center a {
-            pointer-events: auto;
-            text-decoration: none;
-            color: white;
-        }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
 
-        .nav-right {
-            margin-left: auto;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
+    .nav-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2.5rem;
+      font-weight: bold;
+      user-select: none;
+    }
+    .nav-center a {
+      pointer-events: auto;
+      text-decoration: none;
+      color: white;
+    }
 
-        .nav-right img {
-            vertical-align: middle;
-            transition: opacity 0.2s ease;
-            width: 24px;
-            height: 24px;
-        }
+    .nav-right {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .nav-right img {
+      font-size: 1.2rem;
+      vertical-align: middle;
+      transition: opacity 0.2s ease;
+    }
+    .nav-right img:hover {
+      opacity: 0.7;
+      color: #555;
+    }
 
-        .nav-right img:hover {
-            opacity: 0.7;
-        }
+    /* 2 Column Cover Grid */
+    .gallery-2col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      padding: 40px;
+    }
+    .gallery-cover {
+      position: relative;
+      overflow: hidden;
+      display: block;
+    }
+    .gallery-cover img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .gallery-cover .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .gallery-cover:hover .overlay {
+      opacity: 1;
+    }
 
-        /* Gallery */
-        .gallery-2col {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            padding: 40px;
-            justify-items: center;
-        }
-        .gallery-cover {
-            position: relative;
-            overflow: hidden;
-            display: block;
-            width: 100%;
-            max-width: 428px;
-        }
-        .gallery-cover img {
-            width: 100%;
-            height: auto;
-            display: block;
-            aspect-ratio: 16 / 9;
-        }
-        .gallery-cover .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            text-align: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .gallery-cover:hover .overlay {
-            opacity: 1;
-        }
-        /* Page Sections */
-        .section-heading {
-            text-align: center;
-            padding: 40px 0 10px;
-        }
-        .section-heading h1 {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin: 0;
-        }
-        section {
-            padding: 60px 40px;
-            max-width: 900px;
-            margin: auto;
-        }
-        p {
-            font-size: 1rem;
-            margin-bottom: 15px;
-        }
-        /* Contact */
-        .contact-container {
-            display: flex;
-            min-height: 80vh;
-            max-width: 1200px;
-            margin: 40px auto;
-            border-radius: 8px;
-            overflow: hidden;
-            background: transparent;
-        }
-        .contact-image {
-            flex: 1;
-            overflow: hidden;
-        }
-        .contact-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            border-radius: 10px;
-        }
-        .contact-form-section {
-            flex: 1;
-            padding: 40px 50px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 25px;
-        }
-        .contact-form-section h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        .contact-form-section p {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-        }
-        .contact-form label {
-            font-weight: 600;
-            margin-bottom: 6px;
-            display: block;
-            font-size: 1.5rem;
-        }
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 12px 15px;
-            margin-bottom: 18px;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-family: inherit;
-            resize: vertical;
-            background-color: #222;
-            color: #eee;
-            border: none;
-        }
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-        }
-        .contact-form textarea {
-            min-height: 120px;
-        }
-        .contact-form button {
-            width: 120px;
-            background: #fff;
-            color: #000;
-            font-weight: 700;
-            border: none;
-            padding: 15px 0;
-            font-size: 1.1rem;
-            cursor: pointer;
-            border-radius: 50px;
-            transition: background-color 0.3s ease;
-        }
-        .contact-form button:hover {
-            background: #333;
-        }
-        .contact-info {
-            margin-top: 30px;
-            font-size: 1rem;
-            color: #333;
-            line-height: 1.6;
-        }
-        .contact-info strong {
-            font-weight: 700;
-        }
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            font-size: 0.9rem;
-            border-top: 1px solid #eee;
-        }
-        /* Responsive */
-        @media (max-width: 900px) {
-            .contact-container {
-                flex-direction: column;
-                margin: 20px;
-            }
-            .contact-image {
-                height: 250px;
-            }
-            .contact-form-section {
-                padding: 30px 20px;
-            }
-        }
-        /* Responsive Navbar Fix */
-        @media (max-width: 768px) {
-            .custom-nav {
-                flex-direction: column;
-                align-items: center;
-                padding: 1.5rem 2rem;
-                gap: 1rem;
-            }
+    .section-heading {
+      text-align: center;
+      padding: 40px 0 10px;
+    }
+    .section-heading h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin: 0;
+    }
 
-            .nav-left,
-            .nav-right {
-                justify-content: center;
-                width: 100%;
-                gap: 1.2rem;
-            }
+    /* Contact Page Layout */
+    .contact-container {
+      display: flex;
+      min-height: 80vh;
+      max-width: 1200px;
+      margin: 40px auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.05);
+      border-radius: 8px;
+      overflow: hidden;
+      background: transparent;
+    }
 
-            .nav-center {
-                position: static;
-                transform: none;
-                margin: 0;
-                font-size: 2.2rem;
-                text-align: center;
-            }
+    .contact-image {
+      flex: 1;
+      overflow: hidden;
+    }
+    .contact-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 10px;
+    }
 
-            .nav-left {
-                order: 2;
-                flex-wrap: wrap;
-            }
+    .contact-form-section {
+      flex: 1;
+      padding: 40px 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 25px;
+    }
+    .contact-form-section h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .contact-form-section p {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 20px;
+    }
 
-            .nav-center {
-                order: 1;
-            }
+    .contact-form label {
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: block;
+      color: #fff;
+      font-size: 1.5rem;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 18px;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-family: inherit;
+      resize: vertical;
+      background-color: #222;
+      color: #eee;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: transparent;
+      outline: none;
+    }
+    .contact-form textarea {
+      min-height: 120px;
+    }
+    .contact-form button {
+      width: 120px;
+      background: #fff;
+      color: #000;
+      font-weight: 700;
+      border: none;
+      padding: 15px 0;
+      font-size: 1.1rem;
+      cursor: pointer;
+      border-radius: 50px;
+      transition: background-color 0.3s ease;
+    }
+    .contact-form button:hover {
+      background: #333;
+    }
 
-            .nav-right {
-                order: 3;
-            }
-        
-            .gallery-cover {
-                max-width: 350px;
-            }
-            .gallery-2col {
-                padding: 20px;
-            }
-        }
+    .contact-info {
+      margin-top: 30px;
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.6;
+    }
+    .contact-info strong {
+      font-weight: 700;
+    }
+    .contact-info a {
+      color: #fff;
+      text-decoration: none;
+    }
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+      .contact-container {
+        flex-direction: column;
+        margin: 20px;
+      }
+      .contact-image {
+        height: 250px;
+      }
+      .contact-form-section {
+        padding: 30px 20px;
+      }
+    }
+
+    #gallery {
+      column-count: 3;
+      column-gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto 60px;
+      padding: 20px;
+    }
+
+    #gallery img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin-bottom: 20px;
+      break-inside: avoid;
+      transition: transform 0.3s ease;
+    }
+
+    #gallery img:hover {
+      transform: scale(1.03);
+    }
+
+    @media (max-width: 1024px) {
+      #gallery {
+        column-count: 2;
+      }
+    }
+
+    @media (max-width: 600px) {
+      #gallery {
+        column-count: 1;
+      }
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 3rem;
+    }
+
+    #lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+    }
+
+    #lightbox.active {
+      display: flex;
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    #lightbox-prev,
+    #lightbox-next {
+      display: none;
+    }
+
+    #lightbox.active #lightbox-prev,
+    #lightbox.active #lightbox-next {
+      display: block;
+    }
     </style>
+
 </head>
 
 <body>
 
-    <header class="navbar custom-nav">
-        <div class="nav-left">
-            <a href="/IntenceMedia/">Work</a>
-            <a href="/IntenceMedia/contact">Contact</a>
-            <a href="/IntenceMedia/about">About</a>
-        </div>
+  <header class="navbar custom-nav">
+    <div class="nav-left">
+      <a href="/">Work</a>
+      <a href="/IntenceMedia/contact">Contact</a>
+      <a href="/IntenceMedia/about">About</a>
+    </div>
 
-        <div class="nav-center">
-            <a href="/IntenceMedia/">INTENCE MEDIA</a>
-        </div>
+    <div class="nav-center">
+      <a href="/IntenceMedia">INTENCE MEDIA</a>
+    </div>
 
-        <div class="nav-right">
-            <a href="https://instagram.com/intence.media" target="_blank">
-                <img src="https://www.citypng.com/public/uploads/preview/hd-square-white-instagram-logo-icon-png-701751695118869dhkjddwaed.png" alt="Instagram" style="width: 24px; height: 24px;">
-            </a>
-        </div>
-    </header>
+    <div class="nav-right">
+      <a href="https://instagram.com/intence.media" target="_blank">
+        <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/instagram-white-icon.png" alt="Instagram" style="width: 24px; height: 24px;">
+      </a>
+    </div>
+  </header>
 
-  <section class="section-heading">
+  <section>
     <h1>{{title}}</h1>
     <p>{{desc}}</p>
   </section>
 
-  <div class="section-heading">
-    <h2>Gallery</h2>
-  </div>
+  <h2>Gallery</h2>
+  <div id="gallery"></div>
 
-  <script>
+<script>
     const images = {{images}};
 
     const gallery = document.getElementById('gallery');
