@@ -386,67 +386,68 @@
       font-size: 3rem;
     }
 
-    #lightbox {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      justify-content: center;
-      align-items: center;
-      z-index: 10000;
-    }
+      #lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+  }
 
-    #lightbox.active {
-      display: flex;
-    }
+  #lightbox.active {
+    display: flex;
+  }
 
-    #lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      object-fit: contain;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    }
+  #lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }
 
-    #lightbox-prev,
-    #lightbox-next {
-      display: none;
-    }
+  #lightbox-prev,
+  #lightbox-next {
+    display: none;
+  }
 
-    #lightbox.active #lightbox-prev,
-    #lightbox.active #lightbox-next {
-      display: block;
-    }
+  #lightbox.active #lightbox-prev,
+  #lightbox.active #lightbox-next {
+    display: block;
+  }
+
+
     </style>
-
 </head>
 
 <body>
 
-  <header class="navbar custom-nav">
-    <div class="nav-left">
-      <a href="/">Work</a>
-      <a href="/IntenceMedia/contact">Contact</a>
-      <a href="/IntenceMedia/about">About</a>
-    </div>
+    <header class="navbar custom-nav">
+        <div class="nav-left">
+            <a href="/IntenceMedia/">Work</a>
+            <a href="/IntenceMedia/contact">Contact</a>
+            <a href="/IntenceMedia/about">About</a>
+        </div>
 
-    <div class="nav-center">
-      <a href="/IntenceMedia">INTENCE MEDIA</a>
-    </div>
+        <div class="nav-center">
+            <a href="/IntenceMedia/">INTENCE MEDIA</a>
+        </div>
 
-    <div class="nav-right">
-      <a href="https://instagram.com/intence.media" target="_blank">
-        <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/instagram-white-icon.png" alt="Instagram" style="width: 24px; height: 24px;">
-      </a>
-    </div>
-  </header>
+        <div class="nav-right">
+            <a href="https://instagram.com/intence.media" target="_blank">
+                <img src="https://www.citypng.com/public/uploads/preview/hd-square-white-instagram-logo-icon-png-701751695118869dhkjddwaed.png" alt="Instagram" style="width: 24px; height: 24px;">
+            </a>
+        </div>
+    </header>
 
-  <section>
-    <h1>{{title}}</h1>
-    <p>{{desc}}</p>
-  </section>
+    <section>
+        <h1>{{title}}</h1>
+        <p>{{desc}}</p>
+    </section>
 
   <h2>Gallery</h2>
   <div id="gallery"></div>
