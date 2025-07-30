@@ -13,6 +13,7 @@
       color: #fff;
       margin: 0;
     }
+
     header {
       text-align: center;
       padding: 3rem;
@@ -20,6 +21,7 @@
       background: #111;
       font-weight: bold;
     }
+
     .upload-container {
       max-width: 600px;
       margin: 40px auto;
@@ -28,11 +30,13 @@
       padding: 40px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     }
+
     label {
       font-size: 1.5rem;
       display: block;
       margin-bottom: 8px;
     }
+
     input[type="text"],
     textarea,
     input[type="file"] {
@@ -46,6 +50,7 @@
       background: #333;
       color: #fff;
     }
+
     button {
       background: #fff;
       color: #000;
@@ -58,10 +63,12 @@
       transition: all 0.3s ease;
       width: 100%;
     }
+
     button:hover {
       background: #444;
       color: #fff;
     }
+
     .status {
       margin-top: 20px;
       padding: 15px;
@@ -69,6 +76,7 @@
       border-radius: 8px;
       font-size: 1.2rem;
     }
+
     .progress-counter {
       font-size: 1.2rem;
       text-align: center;
@@ -97,7 +105,7 @@
     </form>
     <div class="progress-counter" id="progress-counter"></div>
     <div class="status" id="status"></div>
-
+    
     <div id="preview-container" style="margin-top:40px;">
       <h2>Album Preview</h2>
       <iframe id="album-preview" style="width:100%; height:600px; border:1px solid #555;"></iframe>
@@ -112,6 +120,8 @@
       <button class="codespacebutton">To Intence Media codespace</button>
     </a>
   </div>
+
+
 
   <script>
     const CLOUD_NAME = 'dfqreujbo';
@@ -163,19 +173,6 @@
       document.getElementById('progress-counter').textContent = 'Upload complete. Generating album...';
 
       try {
-        // ✅ BUILD HTML HERE WITH THUMB + FULL SIZE
-        const htmlParts = uploadedUrls.map(url => {
-          const thumb = url.replace('/upload/', '/upload/w_400,h_600,c_fill,q_auto,f_auto/');
-          const full = url.replace('/upload/', '/upload/w_1600,q_auto,f_auto/');
-          return `<a href="${full}" target="_blank"><img src="${thumb}" loading="lazy" width="400" height="600" style="margin:8px; border-radius:8px;" /></a>`;
-        });
-
-        const finalHtml = `
-          <div class="gallery" style="display:flex; flex-wrap:wrap; justify-content:center; gap:16px;">
-            ${htmlParts.join('\n')}
-          </div>
-        `;
-
         const res = await axios.post('/generate', {
           album_name: albumName,
           album_desc: albumDesc,
@@ -188,20 +185,22 @@
             <a href="${res.data.preview_url}" target="_blank">Open Album in New Tab</a>
           `;
 
-          // Update iframe preview
-          document.getElementById('album-preview').src = res.data.preview_url;
+          // Set iframe src to preview URL
+          const previewFrame = document.getElementById('album-preview');
+          previewFrame.src = res.data.preview_url;
 
-          // Show final HTML code
-          document.getElementById('album-code').textContent = finalHtml;
+          // Show full HTML code in textarea
+          const codeArea = document.getElementById('album-code');
+          codeArea.textContent = res.data.html_code;
+
         } else {
           document.getElementById('status').textContent = 'Failed to create album on server.';
         }
-
       } catch (err) {
         document.getElementById('status').textContent = 'Error generating album on server.';
         console.error("Full error:", err.response ? err.response.data : err.message);
       }
     });
-  </script>
+</script>
 </body>
 </html>

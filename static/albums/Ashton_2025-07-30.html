@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Ashton| Intence Media</title>
+    <meta name="description" content="Photos from , Intence Media — freelance photography based in Auckland, New Zealand.">
+    <meta name="keywords" content="Intence Media, sports photography NZ, automotive photography, school sports photos, car photography, New Zealand, Intense Media, Intence Media NZ, Rugby Photography, Photography, freelance, First 15, First XV">
+    <meta name="author" content="Intence Media">
+    <link rel="canonical" href="https://ab23223.github.io/IntenceMedia/">
+    <style>
+
+    img {
+      -webkit-user-drag: none;
+      user-drag: none;
+      pointer-events: none;
+    }
+
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Bebas Kai', sans-serif;
+      background: #191919;
+      color: #fff;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      font-family: 'Bebas Kai', sans-serif;
+      letter-spacing: 1px;
+    }
+
+    @font-face {
+      font-family: 'Bebas Kai';
+      src: url('static/fonts/BebasKai.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #191919;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    nav a:hover {
+      color: #777;
+    }
+
+    /* Gallery Grid */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 40px;
+    }
+    .gallery-item {
+      overflow: hidden;
+      display: block;
+    }
+    .gallery-item img {
+      width: auto;
+      max-width: 373px;
+      max-height: 467px;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Page Sections */
+    section {
+      padding: 60px 40px;
+      max-width: 900px;
+      margin: auto;
+    }
+    h1{
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    p {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+    a:hover {
+      opacity: 0.7;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.9rem;
+      color: #fff;
+      border-top: 1px solid #eee;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav a {
+        margin-left: 0;
+        margin-right: 15px;
+        display: inline-block;
+        margin-top: 10px;
+      }
+    }
+
+    /* Custom Navbar Layout */
+    .custom-nav {
+      position: relative;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 3rem 4rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2.5rem;
+      font-weight: bold;
+      user-select: none;
+    }
+    .nav-center a {
+      pointer-events: auto;
+      text-decoration: none;
+      color: white;
+    }
+
+    .nav-right {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .nav-right img {
+      font-size: 1.2rem;
+      vertical-align: middle;
+      transition: opacity 0.2s ease;
+    }
+    .nav-right img:hover {
+      opacity: 0.7;
+      color: #555;
+    }
+
+    /* 2 Column Cover Grid */
+    .gallery-2col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      padding: 40px;
+    }
+    .gallery-cover {
+      position: relative;
+      overflow: hidden;
+      display: block;
+    }
+    .gallery-cover img {
+      width: auto;
+      max-width: 373px;
+      max-height: 560px;
+      height: auto;
+      display: block;
+    }
+    .gallery-cover .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .gallery-cover:hover .overlay {
+      opacity: 1;
+    }
+
+    .section-heading {
+      text-align: center;
+      padding: 40px 0 10px;
+    }
+    .section-heading h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    /* Contact Page Layout */
+    .contact-container {
+      display: flex;
+      min-height: 80vh;
+      max-width: 1200px;
+      margin: 40px auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.05);
+      border-radius: 8px;
+      overflow: hidden;
+      background: transparent;
+    }
+
+    .contact-image {
+      flex: 1;
+      overflow: hidden;
+    }
+    .contact-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .contact-form-section {
+      flex: 1;
+      padding: 40px 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 25px;
+    }
+    .contact-form-section h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .contact-form-section p {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .contact-form label {
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: block;
+      color: #fff;
+      font-size: 1.5rem;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 18px;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-family: inherit;
+      resize: vertical;
+      background-color: #222;
+      color: #eee;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: transparent;
+      outline: none;
+    }
+    .contact-form textarea {
+      min-height: 120px;
+    }
+    .contact-form button {
+      width: 120px;
+      background: #fff;
+      color: #000;
+      font-weight: 700;
+      border: none;
+      padding: 15px 0;
+      font-size: 1.1rem;
+      cursor: pointer;
+      border-radius: 50px;
+      transition: background-color 0.3s ease;
+    }
+    .contact-form button:hover {
+      background: #333;
+    }
+
+    .contact-info {
+      margin-top: 30px;
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.6;
+    }
+    .contact-info strong {
+      font-weight: 700;
+    }
+    .contact-info a {
+      color: #fff;
+      text-decoration: none;
+    }
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+      .contact-container {
+        flex-direction: column;
+        margin: 20px;
+      }
+      .contact-image {
+        height: 250px;
+      }
+      .contact-form-section {
+        padding: 30px 20px;
+      }
+    }
+
+    #gallery {
+      column-count: 3;
+      column-gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto 60px;
+      padding: 20px;
+    }
+
+    #gallery img {
+      width: auto;
+      max-width: 373px;
+      max-height: 560px;
+      height: auto;
+      display: block;
+      margin-bottom: 20px;
+      break-inside: avoid;
+      transition: transform 0.3s ease;
+    }
+
+    #gallery img:hover {
+      transform: scale(1.03);
+    }
+
+    @media (max-width: 1024px) {
+      #gallery {
+        column-count: 2;
+      }
+    }
+
+    @media (max-width: 600px) {
+      #gallery {
+        column-count: 1;
+      }
+      
+    }
+ 
+    @media (max-width: 480px) {
+      .gallery-item img,
+      .gallery-cover img,
+      #gallery img {
+        max-width: 372px;
+        max-height: 558px;
+        width: auto;
+        height: auto;
+      }
+
+      .gallery,
+      .gallery-2col,
+      #gallery {
+        padding: 10px;
+      }
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 3rem;
+    }
+
+    #lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+    }
+
+    #lightbox.active {
+        display: flex;
+    }
+
+    #lightbox img {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    #lightbox-prev,
+    #lightbox-next {
+        display: none;
+    }
+
+    #lightbox.active #lightbox-prev,
+    #lightbox.active #lightbox-next {
+        display: block;
+    }
+
+
+    </style>
+
+</head>
+
+<body>
+
+  <header class="navbar custom-nav">
+    <div class="nav-left">
+      <a href="/">Work</a>
+      <a href="/IntenceMedia/contact">Contact</a>
+      <a href="/IntenceMedia/about">About</a>
+    </div>
+
+    <div class="nav-center">
+      <a href="/IntenceMedia">INTENCE MEDIA</a>
+    </div>
+
+    <div class="nav-right">
+      <a href="https://instagram.com/intence.media" target="_blank">
+        <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/instagram-white-icon.png" alt="Instagram" style="width: 24px; height: 24px;">
+      </a>
+    </div>
+  </header>
+
+  <section>
+    <h1>Ashton</h1>
+    <p>Balu</p>
+  </section>
+
+  <h2>Gallery</h2>
+  <div id="gallery"></div>
+
+  <script>
+    const images = ["https://res.cloudinary.com/dfqreujbo/image/upload/v1753846888/gdtspsx78swl3f5zr9pa.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1753846889/oemiv9skvwjdthvc3izk.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1753846890/omzl4zekd8yet5obyvdn.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1753846891/lnkpwmlt1gunvatw6fmk.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1753846892/yuppk56kckufy583pvbp.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1753846893/agzbgjatc4neoz2meylq.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1753846893/yx4ovvaedn02k0qyejjk.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1753846895/jhxlkdipaxyxcccunnrj.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1753846896/nas4gpprbi5n1pslujii.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1753846896/s8jymwdqcrddfjhchnvf.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1753846897/jsyqonkeubktdihk2ckp.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1753846898/pj7estenx48job4gne1v.jpg", "https://res.cloudinary.com/dfqreujbo/image/upload/v1753846899/rgv5f20ae3dwrvb0qiys.jpg"];
+
+    const gallery = document.getElementById('gallery');
+
+    images.forEach(url => {
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('data-lightbox', 'gallery');
+
+      const img = document.createElement('img');
+      const transformedThumb = url.replace('/upload/', '/upload/w_400,h_600,c_fill,q_auto,f_auto/');
+      img.src = transformedThumb;
+      img.alt = 'Gallery Image';
+      img.width = 400;
+      img.height = 600;
+      img.loading = 'lazy';
+      img.style.margin = '10px';
+      img.style.objectFit = 'cover';
+      img.style.borderRadius = '8px';
+
+      link.appendChild(img);
+      gallery.appendChild(link);
+    });
+
+
+    function setupLightbox() {
+      const links = gallery.querySelectorAll('a[data-lightbox]');
+      let imagesList = Array.from(links).map(link => link.href);
+      let currentIndex = 0;
+
+      const lightboxContainer = document.createElement('div');
+      const lightboxImage = document.createElement('img');
+      const prevBtn = document.createElement('button');
+      const nextBtn = document.createElement('button');
+
+      lightboxContainer.id = 'lightbox';
+      prevBtn.id = 'lightbox-prev';
+      nextBtn.id = 'lightbox-next';
+
+      prevBtn.textContent = '‹';
+      nextBtn.textContent = '›';
+
+      [prevBtn, nextBtn].forEach(btn => {
+        btn.style.position = 'absolute';
+        btn.style.top = '50%';
+        btn.style.transform = 'translateY(-50%)';
+        btn.style.fontSize = '3rem';
+        btn.style.color = '#fff';
+        btn.style.background = 'rgba(0,0,0,0.3)';
+        btn.style.border = 'none';
+        btn.style.padding = '0 15px';
+        btn.style.cursor = 'pointer';
+        btn.style.userSelect = 'none';
+        btn.style.zIndex = '10001';
+      });
+
+      prevBtn.style.left = '20px';
+      nextBtn.style.right = '20px';
+
+      lightboxContainer.appendChild(lightboxImage);
+      lightboxContainer.appendChild(prevBtn);
+      lightboxContainer.appendChild(nextBtn);
+      document.body.appendChild(lightboxContainer);
+
+      function openLightbox(index) {
+        currentIndex = index;
+        lightboxImage.src = imagesList[currentIndex].replace('/upload/', '/upload/w_1600,q_auto,f_auto/');
+        lightboxContainer.classList.add('active');
+      }
+
+      function closeLightbox() {
+        lightboxContainer.classList.remove('active');
+      }
+
+      function showPrev() {
+        currentIndex = (currentIndex - 1 + imagesList.length) % imagesList.length;
+        lightboxImage.src = imagesList[currentIndex].replace('/upload/', '/upload/w_1600,q_auto,f_auto/');
+      }
+
+      function showNext() {
+        currentIndex = (currentIndex + 1) % imagesList.length;
+        lightboxImage.src = imagesList[currentIndex].replace('/upload/', '/upload/w_1600,q_auto,f_auto/');
+      }
+
+      links.forEach((link, index) => {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          openLightbox(index);
+        });
+      });
+
+      lightboxContainer.addEventListener('click', e => {
+        if (e.target === lightboxContainer) {
+          closeLightbox();
+        }
+      });
+
+      prevBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        showPrev();
+      });
+
+      nextBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        showNext();
+      });
+
+      document.addEventListener('keydown', e => {
+        if (!lightboxContainer.classList.contains('active')) return;
+        if (e.key === 'ArrowLeft') showPrev();
+        else if (e.key === 'ArrowRight') showNext();
+        else if (e.key === 'Escape') closeLightbox();
+      });
+
+      lightboxContainer.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+      });
+
+      lightboxContainer.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        const swipeDistance = touchEndX - touchStartX;
+        if (Math.abs(swipeDistance) > 50) {
+          if (swipeDistance > 0) showPrev();
+          else showNext();
+        }
+      });
+    }
+
+    setupLightbox();
+
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
+  </script>
+  
+  <footer>
+    <p>&copy; 2025 Intence Media. All rights reserved.</p>
+  </footer>
+</body>
+</html>
