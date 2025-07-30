@@ -596,8 +596,19 @@
 
     setupLightbox();
 
-    document.addEventListener('contextmenu', function(e) {
-      e.preventDefault();
+    // Disable right click
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+    });
+
+    // Disable dragging of images and links
+    document.addEventListener('dragstart', function (e) {
+        e.preventDefault();
+    });
+
+    // Optional: Disable text/image selection
+    document.addEventListener('selectstart', function (e) {
+        e.preventDefault();
     });
   </script>
   
